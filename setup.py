@@ -28,8 +28,8 @@ if platform.system() in ['Linux', 'FreeBSD', 'DragonFly']:
         else:
             usr_share = os.path.expanduser('~/.local/share')
     data_files += [
-        (os.path.join(usr_share, 'applications/'), ['electrum-ltc.desktop']),
-        (os.path.join(usr_share, 'pixmaps/'), ['icons/electrum-ltc.png'])
+        (os.path.join(usr_share, 'applications/'), ['electrum-vtc.desktop']),
+        (os.path.join(usr_share, 'pixmaps/'), ['icons/electrum-vtc.png'])
     ]
 
 setup(
@@ -42,7 +42,6 @@ setup(
         'requests',
         'qrcode',
 	'vtc_scrypt',
-	'lyra2re_hash',
 	'lyra2re2_hash',
         'protobuf',
         'dnspython',
