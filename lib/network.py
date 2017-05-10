@@ -43,7 +43,7 @@ from interface import Connection, Interface
 from blockchain import Blockchain
 from version import ELECTRUM_VERSION, PROTOCOL_VERSION
 
-DEFAULT_PORTS = {'t':'50001', 's':'50002'}
+DEFAULT_PORTS = {'t':'55001', 's':'55002'}
 
 #There is a schedule to move the default list to e-x (electrumx) by Jan 2018
 #Schedule is as follows:
@@ -51,17 +51,12 @@ DEFAULT_PORTS = {'t':'50001', 's':'50002'}
 #then gradually switch remaining nodes to e-x nodes
 
 DEFAULT_SERVERS = {
-    'localhost': {'t':'50001'},
-    'elec.luggs.co': {'s':'444'},
-    'electrum-ltc.bysh.me': DEFAULT_PORTS,
-    'electrum-ltc.ddns.net': DEFAULT_PORTS,
-    #'electrum-ltc.petrkr.net': {'t':'60001', 's':'60002'},
-    #'electrum.cryptomachine.com': DEFAULT_PORTS,
-    #'electrum.ltc.xurious.com': DEFAULT_PORTS,
-    #'electrum.snicter.com': DEFAULT_PORTS,
-    #'us11.einfachmalnettsein.de': {'t':'50007', 's':'50008'},
+    'fr1.vtconline.org': DEFAULT_PORTS,
+    'uk1.vtconline.org': DEFAULT_PORTS,
+    'useast1.vtconline.org': DEFAULT_PORTS,
 }
 
+'''
 def set_testnet():
     global DEFAULT_PORTS, DEFAULT_SERVERS
     DEFAULT_PORTS = {'t':'51001', 's':'51002'}
@@ -69,6 +64,7 @@ def set_testnet():
         'electrum-ltc.bysh.me': DEFAULT_PORTS,
         'electrum.ltc.xurious.com': DEFAULT_PORTS,
     }
+'''
 
 def set_nolnet():
     global DEFAULT_PORTS, DEFAULT_SERVERS
