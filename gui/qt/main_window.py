@@ -142,7 +142,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         if self.config.get("is_maximized"):
             self.showMaximized()
 
-        self.setWindowIcon(QIcon(":icons/electrum-ltc.png"))
+        self.setWindowIcon(QIcon(":icons/electrum-vtc.png"))
         self.init_menubar()
 
         wrtabs = weakref.proxy(tabs)
@@ -339,7 +339,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
             self.setGeometry(100, 100, 840, 400)
 
     def watching_only_changed(self):
-        title = 'Electrum-LTC %s  -  %s' % (self.wallet.electrum_version,
+        title = 'Electrum-VTC %s  -  %s' % (self.wallet.electrum_version,
                                         self.wallet.basename())
         extra = [self.wallet.storage.get('wallet_type', '?')]
         if self.wallet.is_watching_only():
@@ -485,7 +485,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
 
         help_menu = menubar.addMenu(_("&Help"))
         help_menu.addAction(_("&About"), self.show_about)
-        help_menu.addAction(_("&Official website"), lambda: webbrowser.open("http://electrum-ltc.org"))
+        help_menu.addAction(_("&Official website"), lambda: webbrowser.open("https://vertcoin.org"))
         help_menu.addSeparator()
         help_menu.addAction(_("&Documentation"), lambda: webbrowser.open("http://docs.electrum.org/")).setShortcut(QKeySequence.HelpContents)
         help_menu.addAction(_("&Report Bug"), self.show_report_bug)
@@ -503,17 +503,17 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
             self.show_error(_('No donation address for this server'))
 
     def show_about(self):
-        QMessageBox.about(self, "Electrum-LTC",
+        QMessageBox.about(self, "Electrum-VTC",
             _("Version")+" %s" % (self.wallet.electrum_version) + "\n\n" + _("Electrum's focus is speed, with low resource usage and simplifying Litecoin. You do not need to perform regular backups, because your wallet can be recovered from a secret phrase that you can memorize or write on paper. Startup times are instant because it operates in conjunction with high-performance servers that handle the most complicated parts of the Litecoin system."))
 
     def show_report_bug(self):
         msg = ' '.join([
             _("Please report any bugs as issues on github:<br/>"),
-            "<a href=\"https://github.com/pooler/electrum-ltc/issues\">https://github.com/pooler/electrum-ltc/issues</a><br/><br/>",
+            "<a href=\"https://github.com/vertcoin/electrum-vtc/issues\">https://github.com/vertcoin/electrum-vtc/issues</a><br/><br/>",
             _("Before reporting a bug, upgrade to the most recent version of Electrum (latest release or git HEAD), and include the version number in your report."),
             _("Try to explain not only what the bug is, but how it occurs.")
          ])
-        self.show_message(msg, title="Electrum-LTC - " + _("Reporting Bugs"))
+        self.show_message(msg, title="Electrum-VTC - " + _("Reporting Bugs"))
 
     def notify_transactions(self):
         if not self.network or not self.network.is_connected():
@@ -541,7 +541,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
 
     def notify(self, message):
         if self.tray:
-            self.tray.showMessage("Electrum-LTC", message, QSystemTrayIcon.Information, 20000)
+            self.tray.showMessage("Electrum-VTC", message, QSystemTrayIcon.Information, 20000)
 
 
 
@@ -594,9 +594,9 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         if self.decimal_point == 2:
             return 'bits'
         if self.decimal_point == 5:
-            return 'mLTC'
+            return 'mVTC'
         if self.decimal_point == 8:
-            return 'LTC'
+            return 'VTC'
         raise Exception('Unknown base unit')
 
     def connect_fields(self, window, btc_e, fiat_e, fee_e):
@@ -2100,7 +2100,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         e.setReadOnly(True)
         vbox.addWidget(e)
 
-        defaultname = 'electrum-ltc-private-keys.csv'
+        defaultname = 'electrum-vtc-private-keys.csv'
         select_msg = _('Select file to export your private keys to')
         hbox, filename_e, csv_button = filename_field(self, self.config, defaultname, select_msg)
         vbox.addLayout(hbox)
@@ -2183,7 +2183,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
     def do_export_labels(self):
         labels = self.wallet.labels
         try:
-            fileName = self.getSaveFileName(_("Select file to save your labels"), 'electrum-ltc_labels.json', "*.json")
+            fileName = self.getSaveFileName(_("Select file to save your labels"), 'electrum-vtc_labels.json', "*.json")
             if fileName:
                 with open(fileName, 'w+') as f:
                     json.dump(labels, f, indent=4, sort_keys=True)
@@ -2196,7 +2196,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         d = WindowModalDialog(self, _('Export History'))
         d.setMinimumSize(400, 200)
         vbox = QVBoxLayout(d)
-        defaultname = os.path.expanduser('~/electrum-ltc-history.csv')
+        defaultname = os.path.expanduser('~/electrum-vtc-history.csv')
         select_msg = _('Select file to export your wallet transactions to')
         hbox, filename_e, csv_button = filename_field(self, self.config, defaultname, select_msg)
         vbox.addLayout(hbox)
@@ -2500,9 +2500,9 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         SSL_id_e.setReadOnly(True)
         id_widgets.append((SSL_id_label, SSL_id_e))
 
-        units = ['LTC', 'mLTC', 'bits']
+        units = ['VTC', 'mVTC', 'bits']
         msg = _('Base unit of your wallet.')\
-              + '\n1LTC=1000mLTC.\n' \
+              + '\n1VTC=1000mVTC.\n' \
               + _(' These settings affects the fields in the Send tab')+' '
         unit_label = HelpLabel(_('Base unit') + ':', msg)
         unit_combo = QComboBox()
@@ -2514,9 +2514,9 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
                 return
             edits = self.amount_e, self.fee_e, self.receive_amount_e
             amounts = [edit.get_amount() for edit in edits]
-            if unit_result == 'LTC':
+            if unit_result == 'VTC':
                 self.decimal_point = 8
-            elif unit_result == 'mLTC':
+            elif unit_result == 'mVTC':
                 self.decimal_point = 5
             elif unit_result == 'bits':
                 self.decimal_point = 2

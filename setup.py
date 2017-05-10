@@ -33,7 +33,7 @@ if platform.system() in ['Linux', 'FreeBSD', 'DragonFly']:
     ]
 
 setup(
-    name="Electrum-LTC",
+    name="Electrum-VTC",
     version=version.ELECTRUM_VERSION,
     install_requires=[
         'pyaes',
@@ -41,7 +41,9 @@ setup(
         'pbkdf2',
         'requests',
         'qrcode',
-        'ltc_scrypt',
+	'vtc_scrypt',
+	'lyra2re_hash',
+	'lyra2re2_hash',
         'protobuf',
         'dnspython',
         'jsonrpclib',
@@ -76,12 +78,12 @@ setup(
             'locale/*/LC_MESSAGES/electrum.mo',
         ]
     },
-    scripts=['electrum-ltc'],
+    scripts=['electrum-vtc'],
     data_files=data_files,
-    description="Lightweight Litecoin Wallet",
+    description="Lightweight Vertcoin Wallet",
     author="Thomas Voegtlin",
     author_email="thomasv@electrum.org",
     license="MIT Licence",
-    url="http://electrum-ltc.org",
-    long_description="""Lightweight Litecoin Wallet"""
+    url="https://github.com/vertcoin/electrum-vtc",
+    long_description="""Lightweight Vertcoin Wallet"""
 )

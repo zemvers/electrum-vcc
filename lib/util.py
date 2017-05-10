@@ -35,7 +35,7 @@ import urllib
 import threading
 from i18n import _
 
-base_units = {'LTC':8, 'mLTC':5, 'uLTC':2}
+base_units = {'VTC':8, 'mVTC':5, 'uVTC':2}
 fee_levels = [_('Within 25 blocks'), _('Within 10 blocks'), _('Within 5 blocks'), _('Within 2 blocks'), _('In the next block')]
 
 def normalize_version(v):
@@ -348,20 +348,14 @@ def time_difference(distance_in_time, include_seconds):
         return "over %d years" % (round(distance_in_minutes / 525600))
 
 block_explorer_info = {
-    'explorer.litecoin.net': ('http://explorer.litecoin.net',
-                        {'tx': 'tx', 'addr': 'address'}),
-    'block-explorer.com': ('https://block-explorer.com',
-                        {'tx': 'tx', 'addr': 'address'}),
-    'Blockr.io': ('https://ltc.blockr.io',
-                        {'tx': 'tx/info', 'addr': 'address/info'}),
-    'SoChain': ('https://chain.so',
-                        {'tx': 'tx/LTC', 'addr': 'address/LTC'}),
-    'system default': ('blockchain:',
+    'bchain.info': ('https://bchain.info/VTC',
+                        {'tx': 'tx', 'addr': 'addr'}),
+    'explorer.vtconline.org': ('https://explorer.vtconline.org',
                         {'tx': 'tx', 'addr': 'address'}),
 }
 
 def block_explorer(config):
-    return config.get('block_explorer', 'explorer.litecoin.net')
+    return config.get('block_explorer', 'bchain.info')
 
 def block_explorer_tuple(config):
     return block_explorer_info.get(block_explorer(config))
@@ -386,12 +380,12 @@ def parse_URI(uri, on_pr=None):
 
     if ':' not in uri:
         if not bitcoin.is_address(uri):
-            raise BaseException("Not a litecoin address")
+            raise BaseException("Not a vertcoin address")
         return {'address': uri}
 
     u = urlparse.urlparse(uri)
-    if u.scheme != 'litecoin':
-        raise BaseException("Not a litecoin URI")
+    if u.scheme != 'vertcoin':
+        raise BaseException("Not a vertcoin URI")
     address = u.path
 
     # python for android fails to parse query
@@ -408,7 +402,7 @@ def parse_URI(uri, on_pr=None):
     out = {k: v[0] for k, v in pq.items()}
     if address:
         if not bitcoin.is_address(address):
-            raise BaseException("Invalid litecoin address:" + address)
+            raise BaseException("Invalid vertcoin address:" + address)
         out['address'] = address
     if 'amount' in out:
         am = out['amount']
@@ -526,7 +520,7 @@ class SocketPipe:
                 if err.errno == 60:
                     raise timeout
                 elif err.errno in [11, 35, 10035]:
-                    print_error("socket errno %d (resource temporarily unavailable)"% err.errno)
+                    print_error("socket errno %d (resource temporarily unavailable)" % err.errno)
                     time.sleep(0.2)
                     raise timeout
                 else:
