@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # You probably need to update only this link
-ELECTRUM_GIT_URL=git://github.com/pooler/electrum-ltc.git
+ELECTRUM_GIT_URL=git://github.com/vertcoin/electrum-vtc.git
 BRANCH=master
-NAME_ROOT=electrum-ltc
+NAME_ROOT=electrum-vtc
 
 
 # These settings probably don't need any change
@@ -19,38 +19,38 @@ set -e
 
 cd tmp
 
-if [ -d "electrum-ltc-git" ]; then
+if [ -d "electrum-vtc-git" ]; then
     # GIT repository found, update it
     echo "Pull"
-    cd electrum-ltc-git
+    cd electrum-vtc-git
     git checkout master
     git pull
     cd ..
 else
     # GIT repository not found, clone it
     echo "Clone"
-    git clone -b $BRANCH $ELECTRUM_GIT_URL electrum-ltc-git
+    git clone -b $BRANCH $ELECTRUM_GIT_URL electrum-vtc-git
 fi
 
-cd electrum-ltc-git
+cd electrum-vtc-git
 VERSION=`git describe --tags`
 echo "Last commit: $VERSION"
 
 cd ..
 
-rm -rf $WINEPREFIX/drive_c/electrum-ltc
-cp -r electrum-ltc-git $WINEPREFIX/drive_c/electrum-ltc
-cp electrum-ltc-git/LICENCE .
+rm -rf $WINEPREFIX/drive_c/electrum-vtc
+cp -r electrum-vtc-git $WINEPREFIX/drive_c/electrum-vtc
+cp electrum-vtc-git/LICENCE .
 
 # add python packages (built with make_packages)
-cp -r ../../../packages $WINEPREFIX/drive_c/electrum-ltc/
+cp -r ../../../packages $WINEPREFIX/drive_c/electrum-vtc/
 
 # add locale dir
-cp -r ../../../lib/locale $WINEPREFIX/drive_c/electrum-ltc/lib/
+cp -r ../../../lib/locale $WINEPREFIX/drive_c/electrum-vtc/lib/
 
 # Build Qt resources
-wine $WINEPREFIX/drive_c/Python27/Lib/site-packages/PyQt4/pyrcc4.exe C:/electrum-ltc/icons.qrc -o C:/electrum-ltc/lib/icons_rc.py
-wine $WINEPREFIX/drive_c/Python27/Lib/site-packages/PyQt4/pyrcc4.exe C:/electrum-ltc/icons.qrc -o C:/electrum-ltc/gui/qt/icons_rc.py
+wine $WINEPREFIX/drive_c/Python27/Lib/site-packages/PyQt4/pyrcc4.exe C:/electrum-vtc/icons.qrc -o C:/electrum-vtc/lib/icons_rc.py
+wine $WINEPREFIX/drive_c/Python27/Lib/site-packages/PyQt4/pyrcc4.exe C:/electrum-vtc/icons.qrc -o C:/electrum-vtc/gui/qt/icons_rc.py
 
 cd ..
 
@@ -64,12 +64,12 @@ $PYTHON "C:/pyinstaller/pyinstaller.py" --noconfirm --ascii --name $NAME_ROOT-$V
 wine "$WINEPREFIX/drive_c/Program Files (x86)/NSIS/makensis.exe" /DPRODUCT_VERSION=$VERSION electrum.nsi
 
 cd dist
-mv electrum-ltc-setup.exe $NAME_ROOT-$VERSION-setup.exe
+mv electrum-vtc-setup.exe $NAME_ROOT-$VERSION-setup.exe
 cd ..
 
 # build portable version
-cp portable.patch $WINEPREFIX/drive_c/electrum-ltc
-pushd $WINEPREFIX/drive_c/electrum-ltc
+cp portable.patch $WINEPREFIX/drive_c/electrum-vtc
+pushd $WINEPREFIX/drive_c/electrum-vtc
 patch < portable.patch 
 popd
 $PYTHON "C:/pyinstaller/pyinstaller.py" --noconfirm --ascii --name $NAME_ROOT-$VERSION-portable.exe -w deterministic.spec
