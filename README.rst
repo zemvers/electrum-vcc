@@ -1,13 +1,14 @@
-Electrum-LTC - Lightweight Litecoin client
+Electrum-VTC - Lightweight Vertcoin client
 ==========================================
 
 ::
 
   Licence: MIT Licence
   Original Author: Thomas Voegtlin
-  Port Maintainer: Pooler
+  Port Maintainer: Pooler (Electrum-LTC)
+  Port Maintainer: Vertcoin (Electrum-VTC)
   Language: Python
-  Homepage: https://electrum-ltc.org/
+  Homepage: https://vertcoin.org
 
 
 
@@ -27,7 +28,7 @@ Electrum from its root directory, without installing it on your
 system; all the python dependencies are included in the 'packages'
 directory. To run Electrum from its root directory, just do::
 
-    ./electrum-ltc
+    ./electrum-vtc
 
 You can also install Electrum on your system, by running this command::
 
@@ -47,8 +48,8 @@ Development version
 
 Check out the code from Github::
 
-    git clone git://github.com/pooler/electrum-ltc.git
-    cd electrum-ltc
+    git clone https://github.com/vertcoin/electrum-vtc.git
+    cd electrum-vtc
 
 Run install (this should install dependencies)::
 
@@ -93,7 +94,7 @@ Mac OS X
     # On Homebrew installs: 
     ARCHFLAGS="-arch i386 -arch x86_64" sudo python setup-release.py py2app --includes sip
     
-    sudo hdiutil create -fs HFS+ -volname "Electrum-LTC" -srcfolder dist/Electrum-LTC.app dist/electrum-ltc-VERSION-macosx.dmg
+    sudo hdiutil create -fs HFS+ -volname "Electrum-VTC" -srcfolder dist/Electrum-VTC.app dist/electrum-vtc-VERSION-macosx.dmg
 
 Windows
 -------
