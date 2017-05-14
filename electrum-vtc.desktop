@@ -2,16 +2,16 @@
 # sudo desktop-file-install electrum.desktop
 
 [Desktop Entry]
-Comment=Lightweight Litecoin Client
-Exec=electrum-ltc %u
-GenericName[en_US]=Litecoin Wallet
-GenericName=Litecoin Wallet
-Icon=electrum-ltc
-Name[en_US]=Electrum Litecoin Wallet
-Name=Electrum Litecoin Wallet
+Comment=Lightweight Vertcoin Client
+Exec=electrum-vtc %u
+GenericName[en_US]=Vertcoin Wallet
+GenericName=Vertcoin Wallet
+Icon=electrum-vtc
+Name[en_US]=Electrum Vertcoin Wallet
+Name=Electrum Vertcoin Wallet
 Categories=Finance;Network;
 StartupNotify=false
 Terminal=false
 Type=Application
-MimeType=x-scheme-handler/litecoin;
+MimeType=x-scheme-handler/vertcoin;
 
