@@ -7,6 +7,7 @@ PYWIN32_URL=http://sourceforge.net/projects/pywin32/files/pywin32/Build%20219/py
 PYINSTALLER_URL=https://pypi.python.org/packages/source/P/PyInstaller/PyInstaller-2.1.zip
 NSIS_URL=http://prdownloads.sourceforge.net/nsis/nsis-2.46-setup.exe?download
 SETUPTOOLS_URL=https://pypi.python.org/packages/2.7/s/setuptools/setuptools-0.6c11.win32-py2.7.exe
+LYRA2RE_HASH_PYTHON_URL=https://github.com/metalicjames/lyra2re-hash-python/archive/master.zip
 
 
 ## These settings probably don't need change
@@ -90,4 +91,11 @@ wine mingw-get install mingw32-libz
 
 printf "[build]\ncompiler=mingw32\n" > $WINEPREFIX/drive_c/Python27/Lib/distutils/distutils.cfg
 
-wine "$PYHOME\\Scripts\\pip.exe" install ltc_scrypt
+$PYTHON -m pip install vtc_scrypt
+
+wget -O lyra2re_hash.zip "$LYRA2RE_HASH_PYTHON_URL"
+unzip lyra2re_hash.zip
+mv lyra2re-hash-python-master $WINEPREFIX/drive_c/lyra2re_hash
+printf "cd /D c:\\lyra2re_hash & c:\\python27\\python.exe setup.py install" > $WINEPREFIX/drive_c/lyra2re_hash/install.bat
+wine c:/windows/system32/cmd.exe /c c:/lyra2re_hash/install.bat
+
