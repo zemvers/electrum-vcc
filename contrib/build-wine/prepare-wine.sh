@@ -92,6 +92,7 @@ wine mingw-get install mingw32-libz
 printf "[build]\ncompiler=mingw32\n" > $WINEPREFIX/drive_c/Python27/Lib/distutils/distutils.cfg
 
 $PYTHON -m pip install vtc_scrypt
+$PYTHON -m pip install win_inet_pton
 
 wget -O lyra2re_hash.zip "$LYRA2RE_HASH_PYTHON_URL"
 unzip lyra2re_hash.zip
