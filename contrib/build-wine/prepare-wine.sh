@@ -94,9 +94,4 @@ printf "[build]\ncompiler=mingw32\n" > $WINEPREFIX/drive_c/Python27/Lib/distutil
 $PYTHON -m pip install vtc_scrypt
 $PYTHON -m pip install win_inet_pton
 
-wget -O lyra2re_hash.zip "$LYRA2RE_HASH_PYTHON_URL"
-unzip lyra2re_hash.zip
-mv lyra2re-hash-python-master $WINEPREFIX/drive_c/lyra2re_hash
-printf "cd /D c:\\lyra2re_hash & c:\\python27\\python.exe setup.py install" > $WINEPREFIX/drive_c/lyra2re_hash/install.bat
-wine c:/windows/system32/cmd.exe /c c:/lyra2re_hash/install.bat
-
+$PYTHON -m pip install $LYRA2RE_HASH_PYTHON_URL
