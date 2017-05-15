@@ -82,6 +82,9 @@ To create binaries, create the 'packages' directory::
     ./contrib/make_packages
 
 This directory contains the python dependencies used by Electrum.
+If you get ImportErrors, this is because the modules aren't installed or
+are installed compressed. unzipping the modules to the contrib folder should
+fix the errors (refer to the contrib/* lines in .gitignore)
 
 Mac OS X
 --------
