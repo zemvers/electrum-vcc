@@ -16,13 +16,5 @@ env/
 .tox/
 .buildozer/
 bin/
-contrib/dns/
-contrib/ecdsa/
-contrib/jsonrpclib/
-contrib/pyaes/
-contrib/qrcode/
-contrib/socks.py
-contrib/sockshandler.py
-contrib/pbkdf2.py
 contrib/build-wine/tmp/
 .vscode/settings.json
