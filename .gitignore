@@ -17,4 +17,4 @@ env/
 .buildozer/
 bin/
 contrib/build-wine/tmp/
-.vscode/settings.json
+.vscode
