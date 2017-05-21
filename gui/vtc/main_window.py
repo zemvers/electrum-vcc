@@ -60,6 +60,7 @@ from qrcodewidget import QRCodeWidget, QRDialog
 from qrtextedit import ShowQRTextEdit
 from transaction_dialog import show_transaction
 from fee_slider import FeeSlider
+from vtctabwidget import VtcTabWidget
 
 
 from electrum_ltc import ELECTRUM_VERSION
@@ -122,7 +123,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
 
         self.completions = QStringListModel()
 
-        self.tabs = tabs = QTabWidget(self)
+        self.tabs = tabs = VtcTabWidget(self)
         self.send_tab = self.create_send_tab()
         self.receive_tab = self.create_receive_tab()
         self.addresses_tab = self.create_addresses_tab()

@@ -2,6 +2,7 @@ import sys
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 import vtctabbar
+import icons_rc
 
 
 class VtcTabWidget(QTabWidget):
@@ -16,10 +17,9 @@ if __name__ == "__main__":
     app = QApplication(sys.argv)
     window = QMainWindow()
     window.setGeometry(100, 100, 840, 400)
-    #window.setStyleSheet("QMainWindow { background-color: darkblue; }")
     tabWidget = VtcTabWidget(window)
-    tabWidget.addTab(QLabel("Test"), "Tes&t")
-    tabWidget.addTab(QLabel("Test 2"), "Test &2")
+    tabWidget.addTab(QLabel("Test"), QIcon(":icons/electrum-vtc.png"), "Test")
+    tabWidget.addTab(QLabel("Test 2"), "Test 2")
     window.setCentralWidget(tabWidget)
     window.show()
     app.exec_()
