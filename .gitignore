@@ -8,6 +8,7 @@ dist/
 contrib/pyinstaller/
 Electrum_VTC.egg-info/
 gui/qt/icons_rc.py
+gui/vtc/icons_rc.py
 locale/
 .devlocaltmp/
 *_trial_temp

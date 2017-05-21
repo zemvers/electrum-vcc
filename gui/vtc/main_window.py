@@ -128,14 +128,14 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         self.receive_tab = self.create_receive_tab()
         self.addresses_tab = self.create_addresses_tab()
         self.utxo_tab = self.create_utxo_tab()
-        tabs.addTab(self.create_history_tab(), _('History') )
-        tabs.addTab(self.send_tab, _('Send') )
-        tabs.addTab(self.receive_tab, _('Receive') )
+        tabs.addTab(self.create_history_tab(), QIcon(":icons/vertcoin.png"), _('History') )
+        tabs.addTab(self.send_tab, QIcon(":icons/send.png"), _('Send') )
+        tabs.addTab(self.receive_tab, QIcon(":icons/receive.png"), _('Receive') )
         if self.config.get('show_addresses_tab', False):
             tabs.addTab(self.addresses_tab, _('Addresses'))
         if self.config.get('show_utxo_tab', False):
             tabs.addTab(self.utxo_tab, _('Coins'))
-        tabs.addTab(self.create_contacts_tab(), _('Contacts') )
+        tabs.addTab(self.create_contacts_tab(), QIcon(":icons/address-book.png"), _('Contacts') )
         tabs.addTab(self.create_console_tab(), _('Console') )
         tabs.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         self.setCentralWidget(tabs)
