@@ -136,7 +136,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         if self.config.get('show_utxo_tab', False):
             tabs.addTab(self.utxo_tab, _('Coins'))
         tabs.addTab(self.create_contacts_tab(), QIcon(":icons/address-book.png"), _('Contacts') )
-        tabs.addTab(self.create_console_tab(), _('Console') )
+        tabs.addTab(self.create_console_tab(), QIcon(":icons/debugwindow.png"), _('Console') )
         tabs.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         self.setCentralWidget(tabs)
 
