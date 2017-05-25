@@ -1,5 +1,6 @@
 <RCC>
   <qresource prefix="/" >
+    <file>icons/tx_output.png</file>
     <file>icons/debugwindow.png</file>
     <file>icons/vertcoin.png</file>
     <file>icons/send.png</file>
