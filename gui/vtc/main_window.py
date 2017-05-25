@@ -132,7 +132,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         tabs.addTab(self.send_tab, QIcon(":icons/send.png"), _('Send') )
         tabs.addTab(self.receive_tab, QIcon(":icons/receive.png"), _('Receive') )
         if self.config.get('show_addresses_tab', False):
-            tabs.addTab(self.addresses_tab, _('Addresses'))
+            tabs.addTab(self.addresses_tab, QIcon(":icons/address-book.png"), _('Addresses'))
         if self.config.get('show_utxo_tab', False):
             tabs.addTab(self.utxo_tab, QIcon(":icons/tx_output.png"), _('Coins'))
         tabs.addTab(self.create_contacts_tab(), QIcon(":icons/address-book.png"), _('Contacts') )
@@ -208,7 +208,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         show = not self.config.get('show_addresses_tab', False)
         self.config.set_key('show_addresses_tab', show)
         if show:
-            self.tabs.insertTab(3, self.addresses_tab, _('Addresses'))
+            self.tabs.insertTab(3, self.addresses_tab, QIcon(":icons/address-book.png"), _('Addresses'))
         else:
             i = self.tabs.indexOf(self.addresses_tab)
             self.tabs.removeTab(i)
