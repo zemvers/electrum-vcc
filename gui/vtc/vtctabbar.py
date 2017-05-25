@@ -7,6 +7,11 @@ class VtcTabBar(QTabBar):
         super(VtcTabBar, self).__init__(parent)
         self.tabSize = QSize(120, 120)
 
+        self.borderColor = QColor(165, 162, 170)
+        self.backgroundColor = QColor(30, 24, 43)
+        self.textColor = self.borderColor
+        self.highlightColor = QColor(27, 92, 46)
+
     def tabSizeHint(self, index):
         return self.tabSize
 
@@ -24,15 +29,21 @@ class VtcTabBar(QTabBar):
         painter.end()
 
     def drawTab(self, painter, rect, icon, text, is_selected):
-        painter.setPen(QColor(165, 162, 170))
-        painter.setBrush(QBrush(QColor(30, 24, 43)))
+        painter.setPen(self.borderColor)
+        painter.setBrush(QBrush(self.backgroundColor))
         painter.drawRect(rect)
 
-        icon_y_padding = 20
-        iconRect = QRect(rect.x(), rect.y() + icon_y_padding, rect.width(),
-                         0.75 * rect.height() - icon_y_padding)
-        icon.paint(painter, iconRect)
+        if is_selected:
+            painter.fillRect(rect.x() + 1, rect.y() + 1, 0.05 * rect.width(),
+                             rect.height(), self.highlightColor)
 
+        painter.setPen(self.textColor)
         textRect = QRect(rect.x(), rect.y() + 0.75 * rect.height(),
                          rect.width(), 0.25 * rect.height())
         painter.drawText(textRect, Qt.AlignCenter, text)
+
+        iconRect = QRect(rect.x() + 0.25 * rect.width(),
+                         rect.y() + 0.25 * rect.height(),
+                         0.5 * rect.width(),
+                         0.5 * rect.height())
+        icon.paint(painter, iconRect)
