@@ -10,6 +10,7 @@ class VtcTabBar(QTabBar):
         self.borderColor = QColor(165, 162, 170)
         self.backgroundColor = QColor(30, 24, 43)
         self.textColor = self.borderColor
+        self.highlightTextColor = QColor(255, 255, 255)
         self.highlightColor = QColor(27, 92, 46)
 
     def tabSizeHint(self, index):
@@ -36,14 +37,18 @@ class VtcTabBar(QTabBar):
         if is_selected:
             painter.fillRect(rect.x() + 1, rect.y() + 1, 0.05 * rect.width(),
                              rect.height(), self.highlightColor)
-
-        painter.setPen(self.textColor)
-        textRect = QRect(rect.x(), rect.y() + 0.75 * rect.height(),
-                         rect.width(), 0.25 * rect.height())
-        painter.drawText(textRect, Qt.AlignCenter, text)
+            self.drawText(painter, rect, self.highlightTextColor, text)
+        else:
+            self.drawText(painter, rect, self.textColor, text)
 
         iconRect = QRect(rect.x() + 0.25 * rect.width(),
                          rect.y() + 0.25 * rect.height(),
                          0.5 * rect.width(),
                          0.5 * rect.height())
         icon.paint(painter, iconRect)
+
+    def drawText(self, painter, rect, color, text):
+        painter.setPen(color)
+        textRect = QRect(rect.x(), rect.y() + 0.75 * rect.height(),
+                         rect.width(), 0.25 * rect.height())
+        painter.drawText(textRect, Qt.AlignCenter, text)
