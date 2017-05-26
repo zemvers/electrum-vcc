@@ -12,7 +12,7 @@ class VtcTabBar(QTabBar):
         self.firstTabColor = QColor(111, 170, 93)
         self.textColor = self.borderColor
         self.highlightTextColor = Qt.white
-        self.highlightColor = self.firstTabColor
+        self.highlightColor = QColor(148, 202, 67)
 
     def tabSizeHint(self, index):
         return self.tabSize
@@ -36,11 +36,11 @@ class VtcTabBar(QTabBar):
         self.drawBackground(painter, rect, is_first_tab)
 
         #text and highlight
-        if is_selected:
+        if is_first_tab:
+            self.drawText(painter, rect, self.highlightTextColor, text)
+        elif is_selected:
             painter.fillRect(rect.x() + 1, rect.y() + 1, 0.05 * rect.width(),
                              rect.height(), self.highlightColor)
-            self.drawText(painter, rect, self.highlightTextColor, text)
-        elif is_first_tab:
             self.drawText(painter, rect, self.highlightTextColor, text)
         else:
             self.drawText(painter, rect, self.textColor, text)
