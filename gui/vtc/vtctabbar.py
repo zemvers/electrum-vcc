@@ -9,9 +9,10 @@ class VtcTabBar(QTabBar):
 
         self.borderColor = QColor(165, 162, 170)
         self.backgroundColor = QColor(30, 24, 43)
+        self.firstTabColor = QColor(111, 170, 93)
         self.textColor = self.borderColor
-        self.highlightTextColor = QColor(255, 255, 255)
-        self.highlightColor = QColor(27, 92, 46)
+        self.highlightTextColor = Qt.white
+        self.highlightColor = self.firstTabColor
 
     def tabSizeHint(self, index):
         return self.tabSize
@@ -21,22 +22,25 @@ class VtcTabBar(QTabBar):
         painter.begin(self)
 
         for index in range(self.count()):
-            rect = self.tabRect(index)
-            icon = self.tabIcon(index)
-            text = self.tabText(index)
-            is_selected = (self.currentIndex() == index)
-            self.drawTab(painter, rect, icon, text, is_selected)
+            self.drawTab(painter, index)
 
         painter.end()
 
-    def drawTab(self, painter, rect, icon, text, is_selected):
-        painter.setPen(self.borderColor)
-        painter.setBrush(QBrush(self.backgroundColor))
-        painter.drawRect(rect)
+    def drawTab(self, painter, index):
+        rect = self.tabRect(index)
+        icon = self.tabIcon(index)
+        text = self.tabText(index)
+        is_selected = (self.currentIndex() == index)
+        is_first_tab = (index == 0)
 
+        self.drawBackground(painter, rect, is_first_tab)
+
+        #text and highlight
         if is_selected:
             painter.fillRect(rect.x() + 1, rect.y() + 1, 0.05 * rect.width(),
                              rect.height(), self.highlightColor)
+            self.drawText(painter, rect, self.highlightTextColor, text)
+        elif is_first_tab:
             self.drawText(painter, rect, self.highlightTextColor, text)
         else:
             self.drawText(painter, rect, self.textColor, text)
@@ -46,6 +50,14 @@ class VtcTabBar(QTabBar):
                          0.5 * rect.width(),
                          0.5 * rect.height())
         icon.paint(painter, iconRect)
+
+    def drawBackground(self, painter, rect, is_first_tab):
+        painter.setPen(self.borderColor)
+        if is_first_tab:
+            painter.setBrush(QBrush(self.firstTabColor))
+        else:
+            painter.setBrush(QBrush(self.backgroundColor))
+        painter.drawRect(rect)
 
     def drawText(self, painter, rect, color, text):
         painter.setPen(color)
