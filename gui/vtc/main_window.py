@@ -337,7 +337,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
             self.setGeometry(*winpos)
         except:
             self.print_error("using default geometry")
-            self.setGeometry(100, 100, 840, 400)
+            self.setGeometry(100, 100, 840, 640)
 
     def watching_only_changed(self):
         title = 'Electrum-VTC %s  -  %s' % (self.wallet.electrum_version,
