@@ -92,6 +92,7 @@ class ElectrumGui:
         self.windows = []
         self.efilter = OpenFileEventFilter(self.windows)
         self.app = QApplication(sys.argv)
+        QFontDatabase.addApplicationFont(":fonts/SourceSansPro-Regular.otf")
         self.init_stylesheet()
         self.app.installEventFilter(self.efilter)
         self.timer = Timer()
