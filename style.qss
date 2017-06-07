@@ -5,3 +5,15 @@
 QWidget[tab="true"] {
     background-color: white;
 }
+
+QPushButton {
+    border: 1px solid #d2d2d2;
+    border-radius: 0px;
+    padding: 5px 15px 5px 15px;
+    outline: none;
+}
+
+QPushButton[primary="true"] {
+    background-color: #56b155;
+    color: white;
+}

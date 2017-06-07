@@ -762,6 +762,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         grid.addWidget(self.expires_label, 3, 1)
 
         self.save_request_button = QPushButton(_('Save'))
+        self.save_request_button.setProperty("primary", QVariant(True))
         self.save_request_button.clicked.connect(self.save_payment_request)
 
         self.new_request_button = QPushButton(_('New'))
@@ -1055,6 +1056,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         self.preview_button = EnterButton(_("Preview"), self.do_preview)
         self.preview_button.setToolTip(_('Display the details of your transactions before signing it.'))
         self.send_button = EnterButton(_("Send"), self.do_send)
+        self.send_button.setProperty("primary", QVariant(True))
         self.clear_button = EnterButton(_("Clear"), self.do_clear)
         buttons = QHBoxLayout()
         buttons.addStretch(1)
