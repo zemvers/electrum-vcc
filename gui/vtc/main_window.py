@@ -800,7 +800,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         vbox.addWidget(self.receive_requests_label)
         vbox.addWidget(self.request_list)
         vbox.setStretchFactor(self.request_list, 1000)
-
+        w.setProperty("tab", QVariant(True))
         return w
 
 
@@ -1113,6 +1113,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         vbox.setStretchFactor(self.invoice_list, 1000)
         w.searchable_list = self.invoice_list
         run_hook('create_send_tab', grid)
+        w.setProperty("tab", QVariant(True))
         return w
 
     def spend_max(self):
