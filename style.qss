@@ -2,7 +2,7 @@
     font-family: "Source Sans Pro";
 }
 
-QWidget[tab="true"] {
+*[tab="true"] {
     background-color: white;
 }
 

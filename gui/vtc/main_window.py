@@ -183,6 +183,10 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         self.connect_slots(gui_object.timer)
         self.fetch_alias()
 
+    def set_tab_property(self, w):
+        w.setProperty('tab', QVariant(True))
+        return w
+
     def on_history(self, b):
         self.emit(SIGNAL('new_fx_history'))
 
@@ -699,7 +703,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         from history_list import HistoryList
         self.history_list = l = HistoryList(self)
         l.searchable_list = l
-        return l
+        return self.set_tab_property(l)
 
     def show_address(self, addr):
         import address_dialog
@@ -801,8 +805,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         vbox.addWidget(self.receive_requests_label)
         vbox.addWidget(self.request_list)
         vbox.setStretchFactor(self.request_list, 1000)
-        w.setProperty("tab", QVariant(True))
-        return w
+        return self.set_tab_property(w)
 
 
     def delete_payment_request(self, addr):
@@ -1115,8 +1118,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         vbox.setStretchFactor(self.invoice_list, 1000)
         w.searchable_list = self.invoice_list
         run_hook('create_send_tab', grid)
-        w.setProperty("tab", QVariant(True))
-        return w
+        return self.set_tab_property(w)
 
     def spend_max(self):
         self.is_max = True
@@ -1537,6 +1539,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         vbox.addWidget(l)
         buttons = QWidget()
         vbox.addWidget(buttons)
+        self.set_tab_property(l)
         return w
 
     def create_addresses_tab(self):
@@ -1669,7 +1672,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
     def create_console_tab(self):
         from console import Console
         self.console = console = Console()
-        return console
+        return self.set_tab_property(console)
 
 
     def update_console(self):
