@@ -1,6 +1,7 @@
 <RCC>
     <qresource prefix="/" >
         <file>fonts/SourceSansPro-Regular.otf</file>
+        <file>fonts/SourceCodePro-Regular.otf</file>
     </qresource>
     <qresource prefix="vtcstyle">
         <file>style.qss</file>

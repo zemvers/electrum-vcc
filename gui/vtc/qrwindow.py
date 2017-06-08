@@ -36,12 +36,7 @@ import PyQt4.QtGui as QtGui
 from electrum_ltc_gui.qt.qrcodewidget import QRCodeWidget
 from electrum_ltc.i18n import _
 
-if platform.system() == 'Windows':
-    MONOSPACE_FONT = 'Lucida Console'
-elif platform.system() == 'Darwin':
-    MONOSPACE_FONT = 'Monaco'
-else:
-    MONOSPACE_FONT = 'monospace'
+MONOSPACE_FONT = 'Source Code Pro'
 
 column_index = 4
 

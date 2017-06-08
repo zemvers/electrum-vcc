@@ -7,12 +7,7 @@ from PyQt4 import QtGui
 from electrum_ltc import util
 
 
-if platform.system() == 'Windows':
-    MONOSPACE_FONT = 'Lucida Console'
-elif platform.system() == 'Darwin':
-    MONOSPACE_FONT = 'Monaco'
-else:
-    MONOSPACE_FONT = 'monospace'
+MONOSPACE_FONT = 'Source Code Pro'
 
 
 class Console(QtGui.QPlainTextEdit):

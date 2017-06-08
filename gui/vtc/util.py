@@ -12,12 +12,7 @@ from electrum_ltc.i18n import _
 from PyQt4.QtGui import *
 from PyQt4.QtCore import *
 
-if platform.system() == 'Windows':
-    MONOSPACE_FONT = 'Lucida Console'
-elif platform.system() == 'Darwin':
-    MONOSPACE_FONT = 'Monaco'
-else:
-    MONOSPACE_FONT = 'monospace'
+MONOSPACE_FONT = 'Source Code Pro'    
 
 GREEN_BG = "QWidget {background-color:#80ff80;}"
 RED_BG = "QWidget {background-color:#ffcccc;}"
