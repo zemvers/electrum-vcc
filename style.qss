@@ -30,6 +30,10 @@ QPushButton[primary="true"] {
     color: white;
 }
 
+StatusBarButton {
+    border: none;
+}
+
 QHeaderView::section {
     background-color: #e7eaed;
 }
