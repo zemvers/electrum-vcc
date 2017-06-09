@@ -138,8 +138,8 @@ class BaseWizard(object):
 
     def import_addresses(self):
         v = keystore.is_address_list
-        title = _("Import Litecoin Addresses")
-        message = _("Enter a list of Litecoin addresses. This will create a watching-only wallet.")
+        title = _("Import Vertcoin Addresses")
+        message = _("Enter a list of Vertcoin addresses. This will create a watching-only wallet.")
         self.add_xpub_dialog(title=title, message=message, run_next=self.on_import_addresses, is_valid=v)
 
     def on_import_addresses(self, text):
