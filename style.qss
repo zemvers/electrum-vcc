@@ -6,14 +6,17 @@
     background-color: white;
 }
 
-QPushButton, QLineEdit, QComboBox, QComboBox::drop-down {
+QPushButton, 
+QLineEdit, 
+QComboBox, 
+QComboBox::drop-down,
+QHeaderView::section {
     /* flat */
-    border: 1px solid #d2d2d2;
+    border: 1px solid #e7eaed;
     border-radius: 0px;
 }
 
-QComboBox::down-arrow
-{
+QComboBox::down-arrow {
     image: url(:icons/down_arrow.png);
 }
 
@@ -23,6 +26,27 @@ QPushButton {
 }
 
 QPushButton[primary="true"] {
-    background-color: #56b155;
+    background-color: #6faa5d;
     color: white;
+}
+
+QHeaderView::section {
+    background-color: white;
+}
+
+QHeaderView::down-arrow {
+    image: url(:icons/down_arrow.png);
+}
+
+QHeaderView::up-arrow {
+    image: url(:icons/up_arrow.png);
+}
+
+QTreeView {
+    background-color: white;
+}
+
+QTreeView::item:selected,
+QTreeView::branch::selected {
+    background-color: #6faa5d;
 }
