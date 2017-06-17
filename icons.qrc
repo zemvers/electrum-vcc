@@ -1,5 +1,13 @@
 <RCC>
   <qresource prefix="/" >
+    <file>icons/up_arrow.png</file>
+    <file>icons/down_arrow.png</file>
+    <file>icons/tx_output.png</file>
+    <file>icons/debugwindow.png</file>
+    <file>icons/vertcoin.png</file>
+    <file>icons/send.png</file>
+    <file>icons/receive.png</file>
+    <file>icons/address-book.png</file>
     <file>icons/electrum-vtc.png</file>
     <file>icons/clock1.png</file>
     <file>icons/clock2.png</file>

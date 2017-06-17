@@ -1,0 +1,85 @@
+* {
+    font-family: "Source Sans Pro";
+}
+
+*[tab="true"] {
+    background-color: white;
+}
+
+QPushButton, 
+QLineEdit, 
+QComboBox, 
+QComboBox::drop-down,
+QHeaderView::section {
+    /* flat */
+    border: 1px solid #e7eaed;
+    border-radius: 0px;
+}
+
+QComboBox::down-arrow {
+    image: url(:icons/down_arrow.png);
+}
+
+QPushButton {
+    padding: 5px 15px 5px 15px;
+    outline: none;
+}
+
+QPushButton[primary="true"] {
+    background-color: #6faa5d;
+    color: white;
+}
+
+StatusBarButton {
+    border: none;
+}
+
+QHeaderView::section {
+    background-color: #e7eaed;
+}
+
+QHeaderView::down-arrow {
+    image: url(:icons/down_arrow.png);
+}
+
+QHeaderView::up-arrow {
+    image: url(:icons/up_arrow.png);
+}
+
+QTreeView {
+    background-color: white;
+}
+
+QTreeView::item:selected,
+QTreeView::branch::selected {
+    background-color: #6faa5d;
+}
+
+QSlider::groove:horizontal {
+    border: 1px solid #565a5e;
+    height: 4px;
+    background: #565a5e;
+    margin: 0px;
+    border-radius: 2px;
+}
+
+QSlider::handle:horizontal {
+    background: white;
+    border: 1px solid #d7dadd;
+    width: 12px;
+    height: 12px;
+    margin: -6px 0;
+    border-radius: 7px;
+}
+
+QSlider::add-page:horizontal {
+    border: 1px solid rgb(30, 24, 43);
+    background: rgb(30, 24, 43);
+    border-radius: 2px;
+}
+
+QSlider::sub-page:horizontal {
+    border: 1px solid #6faa5d;
+    background: #6faa5d;
+    border-radius: 2px;
+}

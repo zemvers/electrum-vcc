@@ -238,7 +238,7 @@ class ElectrumWindow(App):
         if is_address(data):
             self.set_URI(data)
             return
-        if data.startswith('litecoin:'):
+        if data.startswith('vertcoin:'):
             self.set_URI(data)
             return
         # try to decode transaction

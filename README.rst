@@ -56,10 +56,11 @@ Run install (this should install dependencies)::
 
     python setup.py install
 
-Compile the icons file for Qt::
+Compile the icons and style files for VTC::
 
     sudo apt-get install pyqt4-dev-tools
-    pyrcc4 icons.qrc -o gui/qt/icons_rc.py
+    pyrcc4 icons.qrc -o gui/vtc/icons_rc.py
+    pyrcc4 style.qrc -o gui/vtc/style_rc.py
 
 Compile the protobuf description file::
 
