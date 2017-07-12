@@ -4,7 +4,7 @@ import sys, os, re
 import traceback, platform
 from PyQt4 import QtCore
 from PyQt4 import QtGui
-from electrum_ltc import util
+from electrum_vtc import util
 
 
 MONOSPACE_FONT = 'Source Code Pro'

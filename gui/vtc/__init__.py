@@ -36,13 +36,13 @@ from PyQt4.QtGui import *
 from PyQt4.QtCore import *
 import PyQt4.QtCore as QtCore
 
-from electrum_ltc.i18n import _, set_language
-from electrum_ltc.plugins import run_hook
-from electrum_ltc import SimpleConfig, Wallet, WalletStorage
-from electrum_ltc.synchronizer import Synchronizer
-from electrum_ltc.verifier import SPV
-from electrum_ltc.util import DebugMem, UserCancelled, InvalidPassword
-from electrum_ltc.wallet import Abstract_Wallet
+from electrum_vtc.i18n import _, set_language
+from electrum_vtc.plugins import run_hook
+from electrum_vtc import SimpleConfig, Wallet, WalletStorage
+from electrum_vtc.synchronizer import Synchronizer
+from electrum_vtc.verifier import SPV
+from electrum_vtc.util import DebugMem, UserCancelled, InvalidPassword
+from electrum_vtc.wallet import Abstract_Wallet
 from installwizard import InstallWizard, GoBack
 
 

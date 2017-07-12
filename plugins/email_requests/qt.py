@@ -42,11 +42,11 @@ from PyQt4.QtCore import *
 import PyQt4.QtCore as QtCore
 import PyQt4.QtGui as QtGui
 
-from electrum_ltc.plugins import BasePlugin, hook
-from electrum_ltc.paymentrequest import PaymentRequest
-from electrum_ltc.i18n import _
-from electrum_ltc_gui.qt.util import EnterButton, Buttons, CloseButton
-from electrum_ltc_gui.qt.util import OkButton, WindowModalDialog
+from electrum_vtc.plugins import BasePlugin, hook
+from electrum_vtc.paymentrequest import PaymentRequest
+from electrum_vtc.i18n import _
+from electrum_vtc_gui.qt.util import EnterButton, Buttons, CloseButton
+from electrum_vtc_gui.qt.util import OkButton, WindowModalDialog
 
 
 
@@ -142,7 +142,7 @@ class Plugin(BasePlugin):
         menu.addAction(_("Send via e-mail"), lambda: self.send(window, addr))
 
     def send(self, window, addr):
-        from electrum_ltc import paymentrequest
+        from electrum_vtc import paymentrequest
         r = window.wallet.receive_requests.get(addr)
         message = r.get('memo', '')
         if r.get('signature'):
