@@ -4,12 +4,12 @@
 #
 
 try:
-    import electrum_ltc as electrum
-    from electrum_ltc.bitcoin import TYPE_ADDRESS, var_int, msg_magic, Hash, verify_message, public_key_to_p2pkh, EncodeAES, DecodeAES
-    from electrum_ltc.i18n import _
-    from electrum_ltc.keystore import Hardware_KeyStore
+    import electrum_vtc as electrum
+    from electrum_vtc.bitcoin import TYPE_ADDRESS, var_int, msg_magic, Hash, verify_message, public_key_to_p2pkh, EncodeAES, DecodeAES
+    from electrum_vtc.i18n import _
+    from electrum_vtc.keystore import Hardware_KeyStore
     from ..hw_wallet import HW_PluginBase
-    from electrum_ltc.util import print_error
+    from electrum_vtc.util import print_error
 
     import time
     import hid

@@ -33,8 +33,8 @@ from PyQt4.QtCore import *
 import PyQt4.QtCore as QtCore
 import PyQt4.QtGui as QtGui
 
-from electrum_ltc_gui.qt.qrcodewidget import QRCodeWidget
-from electrum_ltc.i18n import _
+from electrum_vtc_gui.qt.qrcodewidget import QRCodeWidget
+from electrum_vtc.i18n import _
 
 MONOSPACE_FONT = 'Source Code Pro'
 
