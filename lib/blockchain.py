@@ -280,6 +280,7 @@ class Blockchain(util.PrintError):
 		reading = chain.get(BlockReadingIndex)
    		if reading == None:
 		  reading = self.read_header(BlockReadingIndex)
+		  chain[BlockReadingIndex] = reading
         
 		if (reading == None or last == None):
 			raise BaseException("Could not find previous blocks when calculating difficulty reading: " + str(BlockReadingIndex) + ", last: " + str(BlockLastSolvedIndex) + ", height: " + str(height))
