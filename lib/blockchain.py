@@ -59,17 +59,6 @@ def deserialize_header(s, height):
     h['block_height'] = height
     return h
 
-def hash_header(header):
-    if header is None:
-        return '0' * 64
-    if header.get('prev_block_hash') is None:
-        header['prev_block_hash'] = '00'*32
-    return hash_encode(Hash(serialize_header(header).decode('hex')))
-
-def pow_hash_header(header):
-    return rev_hex(getPoWHash(serialize_header(header).decode('hex')).encode('hex'))
-
-
 blockchains = {}
 
 def read_blockchains(config):
@@ -132,7 +121,7 @@ class Blockchain(util.PrintError):
         return self.get_hash(self.get_checkpoint()).lstrip('00')[0:10]
 
     def check_header(self, header):
-        header_hash = hash_header(header)
+        header_hash = self.hash_header(header)
         height = header.get('block_height')
         return header_hash == self.get_hash(height)
 
@@ -155,9 +144,9 @@ class Blockchain(util.PrintError):
         self._size = os.path.getsize(p)/80 if os.path.exists(p) else 0
 
     def verify_header(self, header, prev_header, bits, target):
-        prev_hash = hash_header(prev_header)
-        _hash = hash_header(header)
-        _powhash = pow_hash_header(header)
+        prev_hash = self.hash_header(prev_header)
+        _hash = self.hash_header(header)
+        _powhash = self.pow_hash_header(header)
         if prev_hash != header.get('prev_block_hash'):
             raise BaseException("prev hash mismatch: %s vs %s" % (prev_hash, header.get('prev_block_hash')))
         if bitcoin.TESTNET:
@@ -304,7 +293,7 @@ class Blockchain(util.PrintError):
         return deserialize_header(h, height)
 
     def get_hash(self, height):
-        return hash_header(self.read_header(height))
+        return self.hash_header(self.read_header(height))
 
     def BIP9(self, height, flag):
         v = self.read_header(height)['version']
@@ -468,14 +457,14 @@ class Blockchain(util.PrintError):
         if check_height and self.height() != height - 1:
             return False
         if height == 0:
-            return hash_header(header) == bitcoin.GENESIS
+            return self.hash_header(header) == bitcoin.GENESIS
         previous_header = self.read_header(height -1)
         if not previous_header:
             return False
-        prev_hash = hash_header(previous_header)
+        prev_hash = self.hash_header(previous_header)
         if prev_hash != header.get('prev_block_hash'):
             return False
-        bits, target = self.get_target(height / 2016)
+        bits, target = self.get_target(height)
         try:
             self.verify_header(header, previous_header, bits, target)
         except:
