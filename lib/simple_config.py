@@ -199,7 +199,10 @@ class SimpleConfig(PrintError):
             self.set_key('gui_last_wallet', path)
 
     def max_fee_rate(self):
-        return self.get('max_fee_rate', MAX_FEE_RATE)
+        f = self.get('max_fee_rate', MAX_FEE_RATE)
+        if f==0:
+            f = MAX_FEE_RATE
+        return f
 
     def dynfee(self, i):
         if i < 4:
@@ -276,7 +279,7 @@ def read_user_config(path):
             data = f.read()
         result = json.loads(data)
     except:
-        print_msg("Warning: Cannot read config file.", config_path)
+        print_error("Warning: Cannot read config file.", config_path)
         return {}
     if not type(result) is dict:
         return {}

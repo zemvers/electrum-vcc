@@ -20,3 +20,7 @@ env/
 bin/
 contrib/build-wine/tmp/
 .vscode
+
+# tox files
+.cache/
+.coverage
