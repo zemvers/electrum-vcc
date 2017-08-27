@@ -42,7 +42,7 @@ class TrezorCompatibleKeyStore(Hardware_KeyStore):
         client = self.get_client()
         address_path = self.get_derivation() + "/%d/%d"%sequence
         address_n = client.expand_path(address_path)
-        msg_sig = client.sign_message(self.get_coin_name(), address_n, message)
+        msg_sig = client.sign_message(self.plugin.get_coin_name(), address_n, message)
         return msg_sig.signature
 
     def sign_transaction(self, tx, password):
@@ -53,9 +53,10 @@ class TrezorCompatibleKeyStore(Hardware_KeyStore):
         # path of the xpubs that are involved
         xpub_path = {}
         for txin in tx.inputs():
+            pubkeys, x_pubkeys = tx.get_sorted_pubkeys(txin)
             tx_hash = txin['prevout_hash']
             prev_tx[tx_hash] = txin['prev_tx'] 
-            for x_pubkey in txin['x_pubkeys']:
+            for x_pubkey in x_pubkeys:
                 if not is_xpubkey(x_pubkey):
                     continue
                 xpub, s = parse_xpubkey(x_pubkey)
@@ -91,7 +92,8 @@ class TrezorCompatiblePlugin(HW_PluginBase):
         try:
             return self.hid_transport(pair)
         except BaseException as e:
-            raise
+            # see fdb810ba622dc7dbe1259cbafb5b28e19d2ab114
+            # raise
             self.print_error("cannot connect at", device.path, str(e))
             return None
  
@@ -145,10 +147,7 @@ class TrezorCompatiblePlugin(HW_PluginBase):
         return client
 
     def get_coin_name(self):
-        if TESTNET:
-            return "Testnet"
-        else:
-            return "Litecoin"
+        return "Testnet" if TESTNET else "Litecoin"
 
     def initialize_device(self, device_id, wizard, handler):
         # Initialization method
@@ -194,8 +193,11 @@ class TrezorCompatiblePlugin(HW_PluginBase):
 
         if method == TIM_NEW:
             strength = 64 * (item + 2)  # 128, 192 or 256
+            u2f_counter = 0
+            skip_backup = False
             client.reset_device(True, strength, passphrase_protection,
-                                    pin_protection, label, language)
+                                pin_protection, label, language,
+                                u2f_counter, skip_backup)
         elif method == TIM_RECOVER:
             word_count = 6 * (item + 2)  # 12, 18 or 24
             client.step = 0
@@ -282,7 +284,7 @@ class TrezorCompatiblePlugin(HW_PluginBase):
                         pubkeys = map(f, x_pubkeys)
                         multisig = self.types.MultisigRedeemScriptType(
                             pubkeys=pubkeys,
-                            signatures=map(lambda x: x.decode('hex') if x else '', txin.get('signatures')),
+                            signatures=map(lambda x: x.decode('hex')[:-1] if x else '', txin.get('signatures')),
                             m=txin.get('num_sig'),
                         )
                         txinputtype = self.types.TxInputType(
@@ -308,9 +310,7 @@ class TrezorCompatiblePlugin(HW_PluginBase):
                 script_sig = txin['scriptSig'].decode('hex')
                 txinputtype.script_sig = script_sig
 
-            if 'sequence' in txin:
-                sequence = txin['sequence']
-                txinputtype.sequence = sequence
+            txinputtype.sequence = txin.get('sequence', 0xffffffff - 1)
 
             inputs.append(txinputtype)
 
@@ -344,6 +344,7 @@ class TrezorCompatiblePlugin(HW_PluginBase):
                     txoutputtype = self.types.TxOutputType(
                         multisig = multisig,
                         amount = amount,
+                        address_n = self.client_class.expand_path(derivation + "/%d/%d"%index),
                         script_type = self.types.PAYTOMULTISIG)
             else:
                 txoutputtype = self.types.TxOutputType()
