@@ -53,7 +53,7 @@ DEFAULT_PORTS = {'t':'55001', 's':'55002'}
 DEFAULT_SERVERS = {
     'fr1.vtconline.org': DEFAULT_PORTS,
     'uk1.vtconline.org': DEFAULT_PORTS,
-    'useast1.vtconline.org': DEFAULT_PORTS,
+    'vtc.horriblecoders.com': DEFAULT_PORTS,
 }
 
 '''
