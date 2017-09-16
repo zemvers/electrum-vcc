@@ -54,6 +54,8 @@ DEFAULT_SERVERS = {
     'fr1.vtconline.org': DEFAULT_PORTS,
     'uk1.vtconline.org': DEFAULT_PORTS,
     'vtc.horriblecoders.com': DEFAULT_PORTS,
+    'vtc-cce-1.coinomi.net': {'t':'5028'},
+    'vtc-cce-2.coinomi.net': {'t':'5028'},
 }
 
 '''
