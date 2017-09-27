@@ -235,7 +235,10 @@ class Network(util.DaemonThread):
         self.auto_connect = self.config.get('auto_connect', True)
         self.connecting = set()
         self.socket_queue = Queue.Queue()
-        self.start_network(deserialize_server(self.default_server)[2],
+        default_proxy = {"mode": "socks5", "host": "localhost", "port": "9150"}
+        if deserialize_proxy(self.config.get('proxy')) == None:
+	    self.config["proxy"] = serialize_proxy(default_proxy)
+	self.start_network(deserialize_server(self.default_server)[2],
                            deserialize_proxy(self.config.get('proxy')))
 
     def register_callback(self, callback, events):
