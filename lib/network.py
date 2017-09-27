@@ -43,7 +43,7 @@ from interface import Connection, Interface
 import blockchain
 from version import ELECTRUM_VERSION, PROTOCOL_VERSION
 
-DEFAULT_PORTS = {'t':'55001'}
+DEFAULT_PORTS = {'t':'55001', 's':'55002'}
 
 #There is a schedule to move the default list to e-x (electrumx) by Jan 2018
 #Schedule is as follows:
@@ -235,9 +235,8 @@ class Network(util.DaemonThread):
         self.auto_connect = self.config.get('auto_connect', True)
         self.connecting = set()
         self.socket_queue = Queue.Queue()
-        default_proxy = {"mode": "socks5", "host": "localhost", "port": "9150"}
-        if deserialize_proxy(self.config.get('proxy')) == None:
-	    self.config["proxy"] = serialize_proxy(default_proxy)
+        if self.config.get('proxy') == None:
+            self.config.set_key('proxy', 'socks5:localhost:9050')
 	self.start_network(deserialize_server(self.default_server)[2],
                            deserialize_proxy(self.config.get('proxy')))
 
