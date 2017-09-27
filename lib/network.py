@@ -43,7 +43,7 @@ from interface import Connection, Interface
 import blockchain
 from version import ELECTRUM_VERSION, PROTOCOL_VERSION
 
-DEFAULT_PORTS = {'t':'55001', 's':'55002'}
+DEFAULT_PORTS = {'t':'55001'}
 
 #There is a schedule to move the default list to e-x (electrumx) by Jan 2018
 #Schedule is as follows:
@@ -51,11 +51,7 @@ DEFAULT_PORTS = {'t':'55001', 's':'55002'}
 #then gradually switch remaining nodes to e-x nodes
 
 DEFAULT_SERVERS = {
-    'fr1.vtconline.org': DEFAULT_PORTS,
-    'uk1.vtconline.org': DEFAULT_PORTS,
-    'vtc.horriblecoders.com': DEFAULT_PORTS,
-    'vtc-cce-1.coinomi.net': {'t':'5028'},
-    'vtc-cce-2.coinomi.net': {'t':'5028'},
+    'k3ivz7g5xc24u6d2.onion': DEFAULT_PORTS,
 }
 
 '''
