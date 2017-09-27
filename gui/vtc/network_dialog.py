@@ -454,7 +454,6 @@ class NetworkChoiceLayout(object):
                 and self.proxy_port.text() == str(found_proxy[1]):
             self.tor_cb.setChecked(True)
         self.tor_cb.show()
-	self.use_tor_proxy(True)
 
     def use_tor_proxy(self, use_it):
         # 2 = SOCKS5
