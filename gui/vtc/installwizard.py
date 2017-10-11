@@ -98,7 +98,7 @@ class InstallWizard(QDialog, MessageBoxMixin, BaseWizard):
     def __init__(self, config, app, plugins, storage):
         BaseWizard.__init__(self, config, storage)
         QDialog.__init__(self, None)
-        self.setWindowTitle('Electrum-VTC  -  ' + _('Install Wizard'))
+        self.setWindowTitle('Electrum-VTC-TOR  -  ' + _('Install Wizard'))
         self.app = app
         self.config = config
         # Set for base base class
@@ -165,7 +165,7 @@ class InstallWizard(QDialog, MessageBoxMixin, BaseWizard):
         hbox2.addWidget(self.pw_e)
         hbox2.addStretch()
         vbox.addLayout(hbox2)
-        self.set_layout(vbox, title=_('Electrum-VTC wallet'))
+        self.set_layout(vbox, title=_('Electrum-VTC-TOR wallet'))
 
         wallet_folder = os.path.dirname(self.storage.path)
 

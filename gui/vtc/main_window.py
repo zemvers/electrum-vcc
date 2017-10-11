@@ -360,7 +360,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
             self.setGeometry(100, 100, 840, 640)
 
     def watching_only_changed(self):
-        title = 'Electrum-VTC %s  -  %s' % (self.wallet.electrum_version,
+        title = 'Electrum-VTC-TOR %s  -  %s' % (self.wallet.electrum_version,
                                             self.wallet.basename().decode('utf8'))
         extra = [self.wallet.storage.get('wallet_type', '?')]
         if self.wallet.is_watching_only():
@@ -532,7 +532,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
             self.show_error(_('No donation address for this server'))
 
     def show_about(self):
-        QMessageBox.about(self, "Electrum-VTC",
+        QMessageBox.about(self, "Electrum-VTC-TOR",
             _("Version")+" %s" % (self.wallet.electrum_version) + "\n\n" + 
                 _("Electrum's focus is speed, with low resource usage and simplifying Vertcoin. You do not need to perform regular backups, because your wallet can be recovered from a secret phrase that you can memorize or write on paper. Startup times are instant because it operates in conjunction with high-performance servers that handle the most complicated parts of the Vertcoin system."))
 
@@ -543,7 +543,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
             _("Before reporting a bug, upgrade to the most recent version of Electrum (latest release or git HEAD), and include the version number in your report."),
             _("Try to explain not only what the bug is, but how it occurs.")
          ])
-        self.show_message(msg, title="Electrum-VTC - " + _("Reporting Bugs"))
+        self.show_message(msg, title="Electrum-VTC-TOR - " + _("Reporting Bugs"))
 
     def notify_transactions(self):
         if not self.network or not self.network.is_connected():
@@ -571,7 +571,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
 
     def notify(self, message):
         if self.tray:
-            self.tray.showMessage("Electrum-VTC", message, QSystemTrayIcon.Information, 20000)
+            self.tray.showMessage("Electrum-VTC-TOR", message, QSystemTrayIcon.Information, 20000)
 
 
 
@@ -2119,7 +2119,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         e.setReadOnly(True)
         vbox.addWidget(e)
 
-        defaultname = 'electrum-vtc-private-keys.csv'
+        defaultname = 'electrum-vtc-tor-private-keys.csv'
         select_msg = _('Select file to export your private keys to')
         hbox, filename_e, csv_button = filename_field(self, self.config, defaultname, select_msg)
         vbox.addLayout(hbox)
@@ -2216,7 +2216,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         d = WindowModalDialog(self, _('Export History'))
         d.setMinimumSize(400, 200)
         vbox = QVBoxLayout(d)
-        defaultname = os.path.expanduser('~/electrum-vtc-history.csv')
+        defaultname = os.path.expanduser('~/electrum-vtc-tor-history.csv')
         select_msg = _('Select file to export your wallet transactions to')
         hbox, filename_e, csv_button = filename_field(self, self.config, defaultname, select_msg)
         vbox.addLayout(hbox)

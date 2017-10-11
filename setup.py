@@ -81,8 +81,8 @@ setup(
     scripts=['electrum-vtc'],
     data_files=data_files,
     description="Lightweight Vertcoin Wallet",
-    author="Thomas Voegtlin",
-    author_email="thomasv@electrum.org",
+    author="James Lovejoy",
+    author_email="jameslovejoy1@gmail.com",
     license="MIT Licence",
     url="https://github.com/vertcoin/electrum-vtc",
     long_description="""Lightweight Vertcoin Wallet"""
