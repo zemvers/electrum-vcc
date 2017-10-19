@@ -54,6 +54,7 @@ DEFAULT_SERVERS = {
     'fr1.vtconline.org': DEFAULT_PORTS,
     'uk1.vtconline.org': DEFAULT_PORTS,
     'vtc.horriblecoders.com': DEFAULT_PORTS,
+    'vtc.lukechilds.co': DEFAULT_PORTS,
 }
 
 '''
