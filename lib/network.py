@@ -236,7 +236,7 @@ class Network(util.DaemonThread):
         self.connecting = set()
         self.socket_queue = Queue.Queue()
         if self.config.get('proxy') == None:
-            self.config.set_key('proxy', 'socks5:localhost:9050')
+            self.config.set_key('proxy', 'socks5:localhost:9150')
 	self.start_network(deserialize_server(self.default_server)[2],
                            deserialize_proxy(self.config.get('proxy')))
 
