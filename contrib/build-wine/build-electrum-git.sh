@@ -2,8 +2,8 @@
 
 # You probably need to update only this link
 ELECTRUM_GIT_URL=git://github.com/vertcoin/electrum-vtc.git
-BRANCH=master
-NAME_ROOT=electrum-vtc
+BRANCH=tor
+NAME_ROOT=electrum-vtc-tor
 
 
 # These settings probably don't need any change
