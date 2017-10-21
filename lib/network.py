@@ -52,6 +52,7 @@ DEFAULT_PORTS = {'t':'55001', 's':'55002'}
 
 DEFAULT_SERVERS = {
     'k3ivz7g5xc24u6d2.onion': DEFAULT_PORTS,
+    'qlumx6hsr5pk42gz.onion': DEFAULT_PORTS,
 }
 
 '''
