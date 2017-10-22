@@ -43,6 +43,7 @@ ADDRTYPE_P2PKH = 71
 ADDRTYPE_P2SH = 05
 ADDRTYPE_P2SH_ALT = 63
 ADDRTYPE_P2WPKH = 128
+ADDRTYPE_SECRET = 128
 XPRV_HEADER = 0x0488ade4
 XPUB_HEADER = 0x0488b21e
 #XPRV_HEADER_ALT = 0x019d9cfe
@@ -389,14 +390,14 @@ def PrivKeyToSecret(privkey):
 
 def SecretToASecret(secret, compressed=False):
     addrtype = ADDRTYPE_P2PKH
-    vchIn = chr((addrtype+128)&255) + secret
+    vchIn = chr(ADDRTYPE_SECRET&255) + secret
     if compressed: vchIn += '\01'
     return EncodeBase58Check(vchIn)
 
 def ASecretToSecret(key):
     addrtype = ADDRTYPE_P2PKH
     vch = DecodeBase58Check(key)
-    if vch and vch[0] == chr((addrtype+128)&255):
+    if vch and ( vch[0] == chr((addrtype+128)&255) or vch[0] == chr(ADDRTYPE_SECRET&255) ):
         return vch[1:]
     elif is_minikey(key):
         return minikey_to_private_key(key)
