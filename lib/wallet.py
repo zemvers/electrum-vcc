@@ -280,6 +280,7 @@ class Abstract_Wallet(PrintError):
             return []
         index = self.get_address_index(address)
         pk = self.keystore.get_private_key(index, password)
+        pk = bitcoin.SecretToASecret(bitcoin.ASecretToSecret(pk))
         return [pk]
 
     def get_public_key(self, address):
