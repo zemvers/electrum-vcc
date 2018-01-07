@@ -71,11 +71,4 @@ cd dist
 mv electrum-vtc-setup.exe $NAME_ROOT-$VERSION-setup.exe
 cd ..
 
-# build portable version
-cp portable.patch $WINEPREFIX/drive_c/electrum-vtc
-pushd $WINEPREFIX/drive_c/electrum-vtc
-patch < portable.patch 
-popd
-$PYTHON "C:/pyinstaller/pyinstaller.py" --noconfirm --ascii --name $NAME_ROOT-$VERSION-portable.exe -w deterministic.spec
-
 echo "Done."
