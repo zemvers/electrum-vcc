@@ -93,9 +93,6 @@ def get_server(config):
         time.sleep(1.0)
 
 def get_rpc_credentials(config):
-    # TODO backport to_bytes from Python3 to 2
-    # https://stackoverflow.com/questions/16022556/has-python-3-to-bytes-been-back-ported-to-python-2-7
-    # https://stackoverflow.com/questions/24003021/python-long-object-has-no-attribute-to-bytes
     rpc_user = config.get('rpcuser', None)
     rpc_password = config.get('rpcpassword', None)
     if rpc_user is None or rpc_password is None:
@@ -104,8 +101,9 @@ def get_rpc_credentials(config):
         bits = 128
         nbytes = bits // 8 + (bits % 8 > 0)
         pw_int = ecdsa.util.randrange(pow(2, bits))
-        pw_b64 = base64.b64encode(
-            pw_int.to_bytes(nbytes, 'big'), b'-_')
+        # pw_bytes = pw_int.to_bytes(nbytes, 'big')
+        pw_bytes = ('%%0%dx' % (bits << 1) % pw_int).decode('hex')[-bits:]
+        pw_b64 = base64.b64encode(pw_bytes , b'-_')
         rpc_password = to_string(pw_b64, 'ascii')
         config.set_key('rpcuser', rpc_user)
         config.set_key('rpcpassword', rpc_password, save=True)
