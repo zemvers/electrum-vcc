@@ -33,6 +33,8 @@ import traceback
 import urlparse
 import urllib
 import threading
+import hmac
+
 from i18n import _
 
 base_units = {'VTC':8, 'mVTC':5, 'uVTC':2}
@@ -191,6 +193,11 @@ def json_decode(x):
     except:
         return x
 
+# taken from Django Source Code,
+def constant_time_compare(val1, val2):
+    """Return True if the two strings are equal, False otherwise."""
+    return hmac.compare_digest(to_bytes(val1, 'utf8'), to_bytes(val2, 'utf8'))
+
 # decorator that prints execution time
 def profiler(func):
     def do_profile(func, args, kw_args):
@@ -234,6 +241,20 @@ def android_check_data_dir():
         print_error("Moving data to", data_dir)
         shutil.move(old_electrum_dir, data_dir)
     return data_dir
+
+
+def to_bytes(something, encoding='utf8'):
+    """
+    cast string to bytes() like object, but for python2 support it's bytearray copy
+    """
+    if isinstance(something, bytes):
+        return something
+    if isinstance(something, str):
+        return something.encode(encoding)
+    elif isinstance(something, bytearray):
+        return bytes(something)
+    else:
+        raise TypeError("Not a string or bytes like object")
 
 def get_headers_dir(config):
     return android_headers_dir() if 'ANDROID_DATA' in os.environ else config.path
