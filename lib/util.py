@@ -248,7 +248,7 @@ def to_bytes(something, encoding='utf8'):
     """
     if isinstance(something, bytes):
         return something
-    if isinstance(something, str):
+    if isinstance(something, str) or isinstance(something, unicode):
         return something.encode(encoding)
     elif isinstance(something, bytearray):
         return bytes(something)
