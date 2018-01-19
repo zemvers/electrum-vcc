@@ -242,7 +242,6 @@ def android_check_data_dir():
         shutil.move(old_electrum_dir, data_dir)
     return data_dir
 
-
 def to_bytes(something, encoding='utf8'):
     """
     cast string to bytes() like object, but for python2 support it's bytearray copy
@@ -253,6 +252,14 @@ def to_bytes(something, encoding='utf8'):
         return something.encode(encoding)
     elif isinstance(something, bytearray):
         return bytes(something)
+    else:
+        raise TypeError("Not a string or bytes like object")
+
+def to_string(x, enc):
+    if isinstance(x, (bytes, bytearray)):
+        return x.decode(enc)
+    if isinstance(x, str):
+        return x
     else:
         raise TypeError("Not a string or bytes like object")
 
