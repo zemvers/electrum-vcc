@@ -59,6 +59,7 @@ DEFAULT_SERVERS = {
     'vtc-cce-2.coinomi.net': {'t':'5028'},
     'electrum.catpool.io': DEFAULT_PORTS,
     'electrum2.catpool.io': DEFAULT_PORTS,
+    'www.verters.com': {'t': '51001'},
 }
 
 '''
