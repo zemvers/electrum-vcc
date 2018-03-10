@@ -4,9 +4,6 @@ Electrum-VCC - Lightweight Vertcoin Cash client
 ::
 
   Licence: MIT Licence
-  Original Author: Thomas Voegtlin
-  Port Maintainer: Pooler (Electrum-LTC)
-  Port Maintainer: Vertcoin (Electrum-VTC)
   Language: Python
   Homepage: https://vertcoincash.org
 
