@@ -1,5 +1,5 @@
-Electrum-VTC - Lightweight Vertcoin client
-==========================================
+Electrum-VCC - Lightweight Vertcoin Cash client
+===============================================
 
 ::
 
@@ -8,7 +8,7 @@ Electrum-VTC - Lightweight Vertcoin client
   Port Maintainer: Pooler (Electrum-LTC)
   Port Maintainer: Vertcoin (Electrum-VTC)
   Language: Python
-  Homepage: https://vertcoin.org
+  Homepage: https://vertcoincash.org
 
 
 
